@@ -1,0 +1,10 @@
+@import '../../../@common/styles/theme';
+
+:host {
+  &.highlight-first {
+    mat-chip:first-child {
+      color: mat-color($brc-accent, default-contrast);
+      background: mat-color($brc-accent);
+    }
+  }
+}

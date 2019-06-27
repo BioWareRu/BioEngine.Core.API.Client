@@ -1,0 +1,14 @@
+<mat-card>
+    <mat-card-title>
+        <div fxFlex="90">
+            {{ data.title }}
+        </div>
+        <div fxFlex="10">
+            <icon iconName="fa-times" (click)="instance.dismiss()"></icon>
+        </div>
+    </mat-card-title>
+    <mat-card-content>
+        {{ data.message }}
+        <img mat-card-image *ngIf="data.imgUrl" src="{{ data.imgUrl }}" />
+    </mat-card-content>
+</mat-card>

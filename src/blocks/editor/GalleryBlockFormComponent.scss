@@ -1,0 +1,61 @@
+:host {
+  .picturesList {
+    display: flex;
+
+    .addButton {
+      width: 90px;
+      height: 90px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #dedede;
+      margin: 5px;
+
+      icon {
+        width: 40px;
+        height: 40px;
+        font-size: 40px;
+      }
+    }
+
+    .pic {
+      display: flex;
+      max-width: 100px;
+      height: 100px;
+      padding: 5px;
+      position: relative;
+
+      img {
+        max-width: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      .deleteOverlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+          background: rgba(0, 0, 0, 0.3);
+
+          icon {
+            display: inline-block;
+            color: white;
+          }
+        }
+
+        icon {
+          display: none;
+        }
+
+        cursor: pointer;
+      }
+    }
+  }
+}

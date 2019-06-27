@@ -1,0 +1,14 @@
+<mat-form-field [formGroup]="inputFormGroup" [fxFlex]="inputFxFlex">
+    <mat-label>{{ inputLabel }}</mat-label>
+    <input-file
+            [formControlName]="inputFieldName + 'upload'"
+            [placeholder]="''"
+            (acceptedFile)="processFiles($event)"
+            (deletedFile)="delete($event)"
+            [fileLimit]="multiple ? 100 : 1"
+            [fileAccept]="types.join(',')"
+    >
+    </input-file>
+    <mat-error *ngFor="let error of errors">{{ error }}</mat-error>
+    <input style="width: 0; height: 0;" matInput [formControlName]="inputFieldName"/>
+</mat-form-field>

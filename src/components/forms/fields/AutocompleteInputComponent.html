@@ -1,0 +1,22 @@
+<mat-form-field *ngIf="isInitialized" [formGroup]="inputFormGroup" [fxFlex]="inputFxFlex"
+    [appearance]="inputAppearance">
+    <mat-label>{{ inputLabel }}</mat-label>
+    <input type="text" matInput #input [formControlName]="inputFieldName" [matAutocomplete]="autoGroup"
+        [placeholder]="inputPlaceholder" />
+    <mat-autocomplete #autoGroup="matAutocomplete" [displayWith]="displayFn.bind(this)">
+        <ng-container *ngIf="groups && groups.length > 1">
+            <mat-optgroup *ngFor="let group of groups" [label]="group.title">
+                <mat-option *ngFor="let option of group.options" [value]="option.value">
+                    {{ option.title }}
+                </mat-option>
+            </mat-optgroup>
+        </ng-container>
+        <ng-container *ngIf="groups && groups.length === 1">
+            <mat-option *ngFor="let option of groups[0].options" [value]="option.value">
+                {{ option.title }}
+            </mat-option>
+        </ng-container>
+    </mat-autocomplete>
+    <icon matSuffix *ngIf="inputIcon" [icon]="inputIcon"></icon>
+    <mat-error *ngFor="let error of errors">{{ error }}</mat-error>
+</mat-form-field>

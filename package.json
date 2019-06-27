@@ -1,0 +1,59 @@
+{
+  "name": "bioengine.core.api.client",
+  "version": "1.0.1",
+  "description": "Core angular components for api client",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p ./ --outDir dist/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BioWareRu/BioEngine.Core.Api.Client.git"
+  },
+  "author": "George Drak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BioWareRu/BioEngine.Core.Api.Client/issues"
+  },
+  "homepage": "https://github.com/BioWareRu/BioEngine.Core.Api.Client#readme",
+  "dependencies": {
+    "@angular/animations": "8.0.3",
+    "@angular/cdk": "8.0.1",
+    "@angular/common": "8.0.3",
+    "@angular/compiler": "8.0.3",
+    "@angular/core": "8.0.3",
+    "@angular/elements": "8.0.3",
+    "@angular/flex-layout": "8.0.0-beta.26",
+    "@angular/forms": "8.0.3",
+    "@angular/material": "8.0.1",
+    "@angular/material-moment-adapter": "8.0.1",
+    "@angular/platform-browser": "8.0.3",
+    "@angular/platform-browser-dynamic": "8.0.3",
+    "@ckeditor/ckeditor5-angular": "1.1.0",
+    "@ckeditor/ckeditor5-build-balloon": "12.2.0",
+    "@fortawesome/fontawesome-free": "5.9.0",
+    "document-register-element": "1.13.2",
+    "moment": "2.24.0",
+    "ngx-custom-validators": "8.0.0",
+    "ngx-input-file": "8.0.0",
+    "ngx-moment": "3.4.0",
+    "object-path": "0.11.4",
+    "rxjs": "6.5.2",
+    "tslib": "1.10.0",
+    "url-parse": "1.4.7",
+    "uuid": "3.3.2",
+    "zone.js": "0.9.1"
+  },
+  "devDependencies": {
+    "@types/node": "12.0.10",
+    "@types/twitter-for-web": "0.0.1",
+    "@types/url-parse": "1.4.3",
+    "@types/uuid": "3.4.4",
+    "codelyzer": "5.1.0",
+    "ts-node": "8.3.0",
+    "tslint": "5.18.0",
+    "tslint-consistent-codestyle": "1.15.1",
+    "typescript": "3.4.5"
+  }
+}

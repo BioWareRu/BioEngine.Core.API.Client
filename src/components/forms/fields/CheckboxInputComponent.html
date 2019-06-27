@@ -1,0 +1,4 @@
+<div [formGroup]="inputFormGroup" [fxFlex]="inputFxFlex">
+    <mat-checkbox [formControlName]="inputFieldName">{{ inputLabel }}</mat-checkbox>
+    <mat-error *ngFor="let error of errors">{{ error }}</mat-error>
+</div>

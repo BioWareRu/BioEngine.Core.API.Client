@@ -1,0 +1,6 @@
+<mat-form-field [formGroup]="inputFormGroup" [fxFlex]="inputFxFlex" [appearance]="inputAppearance">
+    <mat-label>{{ inputLabel }}</mat-label>
+    <input matInput [formControlName]="inputFieldName" [type]="type" [placeholder]="inputPlaceholder"/>
+    <icon matSuffix *ngIf="inputIcon" [icon]="inputIcon"></icon>
+    <mat-error *ngFor="let error of errors">{{ error }}</mat-error>
+</mat-form-field>

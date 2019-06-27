@@ -1,0 +1,7 @@
+<mat-form-field [formGroup]="inputFormGroup" [fxFlex]="inputFxFlex" [appearance]="inputAppearance">
+    <mat-label>{{ inputLabel }}</mat-label>
+    <input matInput [matDatepicker]="datepicker" [formControlName]="inputFieldName" [placeholder]="inputPlaceholder"/>
+    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+    <mat-datepicker #datepicker></mat-datepicker>
+    <mat-error *ngFor="let error of errors">{{ error }}</mat-error>
+</mat-form-field>
