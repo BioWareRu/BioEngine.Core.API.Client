@@ -1,4 +1,6 @@
-@import '../../@common/styles/theme';
+$storage-manager-bg-color: '#FFF';
+$storage-manager-row-hover: '#BBB';
+$storage-manager-row-selected: '#AAA';
 
 :host {
   display: flex;
@@ -14,7 +16,7 @@
   height: 160px;
   min-height: 160px;
   max-height: 160px;
-  background-color: mat-color($brc-accent) !important;
+  background-color: $storage-manager-bg-color;
   color: white;
   font-size: 24px;
 
@@ -56,11 +58,12 @@ mat-cell {
 
 mat-row.selectable {
   cursor: pointer;
+
   &:hover {
-    background: mat-color($brc-accent);
+    background: $storage-manager-row-hover;
   }
 }
 
 mat-row.selected {
-  background: lighten(mat-color($brc-accent), 10);
+  background: $storage-manager-row-selected;
 }
