@@ -4,8 +4,8 @@ import {BlocksManager} from '../BlocksManager';
 import {Form} from '../../components/forms/Form';
 import {IContentEntity} from "../../components/models/interfaces/IContentEntity";
 import {DialogService} from "../../components/modals/DialogService";
-import {ContentBlockItemType} from "../ContentBlockItemType";
 import {AbstractBaseContentBlock} from "../../components/models/AbstractBaseContentBlock";
+import {BlocksManagerFactory} from "../BlocksManagerFactory";
 
 @Component({
     selector: 'blocksForm',
@@ -15,7 +15,7 @@ import {AbstractBaseContentBlock} from "../../components/models/AbstractBaseCont
 })
 export class BlocksFormComponent implements OnInit {
 
-    public constructor(private readonly _dialogsService: DialogService) {
+    public constructor(private readonly _dialogsService: DialogService, private readonly _blocksManagerFactory: BlocksManagerFactory) {
     }
 
     @Input()
@@ -72,7 +72,7 @@ export class BlocksFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.blocksManager = new BlocksManager(this.model);
+        this.blocksManager = this._blocksManagerFactory.create(this.model);
 
         this._blocks = this.model.blocks.slice();
         this.blocksManager.blocks.subscribe(blocks => {
@@ -82,7 +82,7 @@ export class BlocksFormComponent implements OnInit {
             }
         });
 
-        this.form.onChange.subscribe(_ => {
+        this.form.onChange.subscribe(() => {
             if (!BlocksFormComponent.equals(this._blocks, this.model.blocks)) {
                 this.form.getControlByProperty('blocks').patchValue(this.model.blocks);
                 this._blocks = this.model.blocks.slice();
@@ -90,12 +90,12 @@ export class BlocksFormComponent implements OnInit {
         });
 
         if (this.model.blocks.length === 0) {
-            this.blocksManager.addBlock(this.blocksManager.createBlock(ContentBlockItemType.Text));
+            this.blocksManager.addBlock(this.blocksManager.createBlock('textblock'));
             this.blocksManager.update();
         }
     }
 
-    public addBlock(type: ContentBlockItemType): void {
+    public addBlock(type: string): void {
         const block = this.blocksManager.createBlock(type);
         this.blocksManager.addBlock(block);
         this.blocksManager.update();

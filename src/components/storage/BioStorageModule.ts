@@ -4,7 +4,7 @@ import {StorageManagerComponent} from "./StorageManagerComponent";
 import {CreateFolderDialogComponent} from "./CreateFolderDialogComponent";
 import {BioCommonModule} from "../BioCommonModule";
 import {BioDialogsModule} from "../modals/BioDialogsModule";
-import {MatSortModule} from "@angular/material";
+import {MatSortModule, MatTableModule} from "@angular/material";
 import {BioFormsModule} from "../forms/FormsModule";
 
 @NgModule({
@@ -13,6 +13,7 @@ import {BioFormsModule} from "../forms/FormsModule";
         BioDialogsModule,
         BioFormsModule,
         MatSortModule,
+        MatTableModule
     ],
     declarations: [
         StorageManagerDialogComponent,
@@ -30,6 +31,6 @@ import {BioFormsModule} from "../forms/FormsModule";
         CreateFolderDialogComponent
     ]
 })
-export class StorageModule {
+export class BioStorageModule {
 
 }

@@ -5,36 +5,12 @@ import * as uuid from 'uuid';
 import {BlockConfig} from './BlockConfig';
 import {IContentEntity} from "../components/models/interfaces/IContentEntity";
 import Dictionary from "../components/Dictionary";
-import {ContentBlockItemType} from "./ContentBlockItemType";
 import {AbstractBaseContentBlock} from "../components/models/AbstractBaseContentBlock";
-import {TextBlock} from "./TextBlock";
-import {TextBlockFormComponent} from "./editor/TextBlockFormComponent";
-import {QuoteBlock} from "./QuoteBlock";
-import {QuoteBlockFormComponent} from "./editor/QuoteBlockFormComponent";
-import {FileBlock} from "./FileBlock";
-import {FileBlockFormComponent} from "./editor/FileBlockFormComponent";
-import {GalleryBlock} from "./GalleryBlock";
-import {GalleryBlockFormComponent} from "./editor/GalleryBlockFormComponent";
-import {PictureBlock} from "./PictureBlock";
-import {PictureBlockFormComponent} from "./editor/PictureBlockFormComponent";
-import {CutBlock} from "./CutBlock";
-import {CutBlockFormComponent} from "./editor/CutBlockFormComponent";
-import {TwitterBlock} from "./TwitterBlock";
-import {TwitterBlockFormComponent} from "./editor/TwitterBlockFormComponent";
-import {YoutubeBlock} from "./YoutubeBlock";
 
 export class BlocksManager {
     constructor(private readonly _contentItem: IContentEntity) {
         this.blocks = this._blocksSubject.asObservable();
         this._blocks = _contentItem.blocks || [];
-        this.registerBlockType(ContentBlockItemType.Text, TextBlock, TextBlockFormComponent);
-        this.registerBlockType(ContentBlockItemType.Quote, QuoteBlock, QuoteBlockFormComponent);
-        this.registerBlockType(ContentBlockItemType.File, FileBlock, FileBlockFormComponent);
-        this.registerBlockType(ContentBlockItemType.Gallery, GalleryBlock, GalleryBlockFormComponent);
-        this.registerBlockType(ContentBlockItemType.Picture, PictureBlock, PictureBlockFormComponent);
-        this.registerBlockType(ContentBlockItemType.Cut, CutBlock, CutBlockFormComponent);
-        this.registerBlockType(ContentBlockItemType.Twitter, TwitterBlock, TwitterBlockFormComponent);
-        this.registerBlockType(ContentBlockItemType.Youtube, YoutubeBlock, PictureBlockFormComponent);
         this.update();
     }
 
@@ -46,7 +22,7 @@ export class BlocksManager {
 
     public readonly types = new Dictionary<string, BlockConfig>();
 
-    public disableBlockType(type: ContentBlockItemType): void {
+    public disableBlockType(type: string): void {
         if (this.types.hasKey(type)) {
             this.types.remove(type);
         }
@@ -85,7 +61,7 @@ export class BlocksManager {
         this._setPositions();
     }
 
-    public createBlock<TBlock extends AbstractBaseContentBlock>(type: ContentBlockItemType): TBlock {
+    public createBlock<TBlock extends AbstractBaseContentBlock>(type: string): TBlock {
         if (!this.types.hasKey(type)) {
             throw new Error(`type ${type} is not registered!`);
         }
@@ -111,7 +87,7 @@ export class BlocksManager {
         this.update();
     }
 
-    public registerBlockType(type: ContentBlockItemType, typeClass: Type<any>, formComponent: Type<any>): void {
+    public registerBlockType(type: string, typeClass: Type<any>, formComponent: Type<any>): void {
         if (this.types.hasKey(type)) {
             throw new Error(`type ${type} already registered!`);
         }
@@ -121,7 +97,7 @@ export class BlocksManager {
         this.types.set(type, new BlockConfig(type, typeClass, block.title, block.icon, formComponent));
     }
 
-    public getBlockConfig(type: ContentBlockItemType): BlockConfig | null {
+    public getBlockConfig(type: string): BlockConfig | null {
         return this.types.get(type);
     }
 }

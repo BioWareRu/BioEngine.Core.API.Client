@@ -1,4 +1,3 @@
-import {ContentBlockItemType} from './ContentBlockItemType';
 import {GalleryBlockData} from './GalleryBlockData';
 import {AbstractContentBlock} from "../components/models/AbstractContentBlock";
 import {Icon} from "../components/icon/Icon";
@@ -6,7 +5,7 @@ import {Icon} from "../components/icon/Icon";
 export class GalleryBlock extends AbstractContentBlock<GalleryBlockData> {
     public title = 'Галерея';
     public icon = new Icon('fa-images');
-    public type: ContentBlockItemType = ContentBlockItemType.Gallery;
+    public type = 'galleryblock';
     data: GalleryBlockData = new GalleryBlockData();
 
     public isEmpty(): boolean {

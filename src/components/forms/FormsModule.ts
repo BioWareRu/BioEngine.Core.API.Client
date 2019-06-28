@@ -11,14 +11,12 @@ import {SelectInputComponent} from './fields/SelectInputComponent';
 import {TextAreaInputComponent} from './fields/TextAreaInputComponent';
 import {TextInputComponent} from './fields/TextInputComponent';
 import {UploadInputComponent} from './fields/UploadInputComponent';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatTabsModule} from '@angular/material/tabs';
 import {BioCommonModule} from "../BioCommonModule";
 
 const config: InputFileConfig = {};
@@ -54,7 +52,6 @@ const config: InputFileConfig = {};
     imports: [
         BioCommonModule,
         FormsModule,
-        MatProgressSpinnerModule,
         MatInputModule,
         MatFormFieldModule,
         MatDatepickerModule,
@@ -63,7 +60,6 @@ const config: InputFileConfig = {};
         MatAutocompleteModule,
         ReactiveFormsModule,
         CKEditorModule,
-        MatTabsModule,
         InputFileModule.forRoot(config)
     ]
 })

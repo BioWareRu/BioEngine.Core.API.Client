@@ -3,10 +3,10 @@ import {Validators} from '@angular/forms';
 import {AbstractContentBlockFormComponent} from './AbstractContentBlockFormComponent';
 import {BlockFieldDescriptor} from './BlockFieldDescriptor';
 import {CustomValidators} from 'ngx-custom-validators';
-import * as url from 'url';
 import {FieldInputChange} from "../../components/forms/FieldInputChange";
 import {TwitterBlock} from "../TwitterBlock";
 import {SnackBarService} from "../../components/snacks/SnackBarService";
+const Url = require('url-parse');
 
 @Component({
     selector: 'twitter-block-form',
@@ -79,20 +79,20 @@ export class TwitterBlockFormComponent extends AbstractContentBlockFormComponent
     }
 
     private _getTweetInfo(uri: string): TweetInfo | null {
-        const parsed = url.parse(uri);
+        const parsed = new Url(uri);
         if (parsed.host !== 'twitter.com') {
             return null;
         }
 
-        if (!parsed.path) {
+        if (!parsed.pathname) {
             return null;
         }
 
-        if (parsed.path.indexOf('status') === -1) {
+        if (parsed.pathname.indexOf('status') === -1) {
             return null;
         }
 
-        const match = this._statusIdRegex.exec(parsed.path);
+        const match = this._statusIdRegex.exec(parsed.pathname);
         if (match === null) {
             return null;
         }

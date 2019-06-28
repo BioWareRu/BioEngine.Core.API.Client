@@ -1,4 +1,3 @@
-import {ContentBlockItemType} from './ContentBlockItemType';
 import {TextBlockData} from './TextBlockData';
 import {AbstractContentBlock} from "../components/models/AbstractContentBlock";
 import {Icon} from "../components/icon/Icon";
@@ -6,7 +5,7 @@ import {Icon} from "../components/icon/Icon";
 export class TextBlock extends AbstractContentBlock<TextBlockData> {
     public title = 'Текст';
     public icon = new Icon('fa-pen');
-    public type: ContentBlockItemType = ContentBlockItemType.Text;
+    public type = 'textblock';
     data: TextBlockData = new TextBlockData();
 
     public isEmpty(): boolean {

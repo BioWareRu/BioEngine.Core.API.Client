@@ -1,6 +1,6 @@
-$storage-manager-bg-color: '#FFF';
-$storage-manager-row-hover: '#BBB';
-$storage-manager-row-selected: '#AAA';
+$storage-manager-bg-color: '#FFF' !default;
+$storage-manager-row-hover: '#BBB' !default;
+$storage-manager-row-selected: '#AAA' !default;
 
 :host {
   display: flex;

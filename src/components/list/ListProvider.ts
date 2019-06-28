@@ -9,32 +9,34 @@ import {Filter} from "../http/Filter";
 import {AbstractEntity} from "../models/AbstractEntity";
 import {EventEmitter} from "@angular/core";
 
+export class ListProviderState {
+    public constructor(public currentPage: number, public itemsPerPage: number, public sort: string | null, public filter: Filter | null) {
+    }
+}
+
 export class ListProvider<T extends AbstractEntity> implements DataSource<T> {
-    public items: Subject<Array<T>>;
+    public items: Subject<Array<T>> = new BehaviorSubject<Array<T>>([]);
     public columns: Array<ListTableColumn<T>>;
     public paginator: MatPaginator;
     public sorter: MatSort;
     public dataLoaded = false;
 
-    private _onSortChange = new EventEmitter<string>();
-    private _onFilterChange = new EventEmitter<Filter>();
-    private _onPageChange = new EventEmitter<number>();
+    private _onStateChange = new EventEmitter<ListProviderState>();
 
     constructor(
         private readonly _service: AbstractBaseService<T>,
         private _filter: Filter | null = null,
         private _currentPage: number = 0,
         private itemsPerPage: number = 10,
-        private _sort: string = '-dateAdded'
+        private _sort: string | null = '-dateAdded'
     ) {
     }
 
     public init(): void {
-        this.items = new BehaviorSubject<Array<T>>([]);
-
         this.paginator.page.subscribe(e => {
             this.itemsPerPage = e.pageSize;
-            this.changePage(e.pageIndex);
+            this._currentPage = e.pageIndex;
+            this._emitState();
         });
         this.sorter.sortChange.subscribe(e => {
             this.applySort(e.active, e.direction);
@@ -63,8 +65,8 @@ export class ListProvider<T extends AbstractEntity> implements DataSource<T> {
             });
     }
 
-    public changePage(page: number): void {
-        this._onPageChange.emit(page);
+    private _emitState() {
+        this._onStateChange.emit(new ListProviderState(this._currentPage, this.itemsPerPage, this._sort, this._filter));
     }
 
     public applySort(column: string, direction: SortDirection): void {
@@ -79,23 +81,17 @@ export class ListProvider<T extends AbstractEntity> implements DataSource<T> {
             case '':
                 break;
         }
-        this._onSortChange.emit(sortKey);
+        this._sort = sortKey;
+        this._emitState();
     }
 
     public applyFilter(filter: Filter): void {
-        this._onFilterChange.emit(filter);
+        this._filter = filter;
+        this._emitState();
     }
 
-    public OnPageChange(): Observable<number> {
-        return this._onPageChange.asObservable();
-    }
-
-    public OnSortChange(): Observable<string> {
-        return this._onSortChange.asObservable();
-    }
-
-    public OnFilterChange(): Observable<Filter> {
-        return this._onFilterChange.asObservable();
+    public onStateChange(): Observable<ListProviderState> {
+        return this._onStateChange.asObservable();
     }
 
     connect(_: CollectionViewer): Observable<T[] | ReadonlyArray<T>> {

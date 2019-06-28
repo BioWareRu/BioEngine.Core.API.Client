@@ -2,7 +2,6 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 import {Validators} from '@angular/forms';
 import {BlockFieldDescriptor} from './BlockFieldDescriptor';
 import {AbstractEditorBlockFormComponent} from "./AbstractEditorBlockFormComponent";
-import {ContentBlockItemType} from "../ContentBlockItemType";
 import {TextBlock} from "../TextBlock";
 import {SnackBarService} from "../../components/snacks/SnackBarService";
 
@@ -21,7 +20,8 @@ import {SnackBarService} from "../../components/snacks/SnackBarService";
                 <div style="text-align: right"><a mat-button (click)="switchHtml()">Редактировать HTML</a></div>
             </ng-container>
             <ng-container *ngIf="htmlMode">
-                <textarea-input [inputFieldName]="getFieldName('text')" [inputFormGroup]="form.formGroup"></textarea-input>
+                <textarea-input [inputFieldName]="getFieldName('text')"
+                                [inputFormGroup]="form.formGroup"></textarea-input>
                 <div style="text-align: right"><a mat-button (click)="switchHtml()">Вернуться в редактор</a></div>
             </ng-container>
         </div>
@@ -72,7 +72,7 @@ export class TextBlockFormComponent extends AbstractEditorBlockFormComponent<Tex
             throw new Error('No control for id ' + id);
         }
         control.setValue(parts[0]);
-        const nextBlock = this.blocksManager.createBlock<TextBlock>(ContentBlockItemType.Text);
+        const nextBlock = this.blocksManager.createBlock<TextBlock>('textblock');
         nextBlock.data.text = parts[1];
         nextBlock.inFocus = true;
         this.blocksManager.addBlock(nextBlock, this.model);

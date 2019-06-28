@@ -1,4 +1,3 @@
-import {ContentBlockItemType} from './ContentBlockItemType';
 import {QuoteBlockData} from './QuoteBlockData';
 import {AbstractContentBlock} from "../components/models/AbstractContentBlock";
 import {Icon} from "../components/icon/Icon";
@@ -6,7 +5,7 @@ import {Icon} from "../components/icon/Icon";
 export class QuoteBlock extends AbstractContentBlock<QuoteBlockData> {
     public title = 'Цитата';
     public icon = new Icon('fa-quote-right');
-    public type: ContentBlockItemType = ContentBlockItemType.Quote;
+    public type = 'quoteblock';
     data: QuoteBlockData = new QuoteBlockData();
 
     public isEmpty(): boolean {

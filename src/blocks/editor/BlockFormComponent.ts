@@ -2,7 +2,6 @@ import {Component, ComponentFactoryResolver, Input, OnInit, ViewChild} from '@an
 
 import {BlocksManager} from '../BlocksManager';
 import {AbstractContentBlockFormComponent} from './AbstractContentBlockFormComponent';
-import {ContentBlockItemType} from "../ContentBlockItemType";
 import {DynamicHostDirective} from "../../components/directives/DynamicHostDirective";
 import {AbstractBaseContentBlock} from "../../components/models/AbstractBaseContentBlock";
 import {Form} from "../../components/forms/Form";
@@ -80,7 +79,7 @@ export class BlockFormComponent<TModel extends AbstractBaseContentBlock> impleme
         instance.blocksManager = this.blocksManager;
     }
 
-    public addBlock(type: ContentBlockItemType, direction = 'after'): void {
+    public addBlock(type: string, direction = 'after'): void {
         const newBlock = this.blocksManager.createBlock(type);
         if (this.model.isEmpty()) {
             this.blocksManager.replaceBlock(this.model, newBlock);
