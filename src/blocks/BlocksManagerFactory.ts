@@ -1,5 +1,4 @@
 import {BlocksManager} from "./BlocksManager";
-import {IContentEntity} from "../components/models/interfaces/IContentEntity";
 import {TextBlock} from "./TextBlock";
 import {TextBlockFormComponent} from "./editor/TextBlockFormComponent";
 import {QuoteBlock} from "./QuoteBlock";
@@ -19,8 +18,8 @@ import {YoutubeBlockFormComponent} from "./editor/YoutubeBlockFormComponent";
 
 export abstract class BlocksManagerFactory {
     // noinspection JSMethodCanBeStatic
-    public create(entity: IContentEntity): BlocksManager {
-        let manager = new BlocksManager(entity);
+    public create(): BlocksManager {
+        let manager = new BlocksManager();
         manager.registerBlockType('textblock', TextBlock, TextBlockFormComponent);
         manager.registerBlockType('quoteblock', QuoteBlock, QuoteBlockFormComponent);
         manager.registerBlockType('fileblock', FileBlock, FileBlockFormComponent);

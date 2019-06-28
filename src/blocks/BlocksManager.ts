@@ -8,12 +8,30 @@ import Dictionary from "../components/Dictionary";
 import {AbstractBaseContentBlock} from "../components/models/AbstractBaseContentBlock";
 
 export class BlocksManager {
-    constructor(private readonly _contentItem: IContentEntity) {
+    constructor() {
         this.blocks = this._blocksSubject.asObservable();
-        this._blocks = _contentItem.blocks || [];
+    }
+
+    public setEntity(contentItem: IContentEntity) {
+        this._contentItem = contentItem;
+        if (contentItem.blocks) {
+            contentItem.blocks.forEach(block => {
+                // is block mapped?
+                if (!block.hasOwnProperty('isEmpty')) {
+                    let newBlock = this.createBlock(block.type);
+                    newBlock.position = block.position;
+                    newBlock.id = block.id;
+                    newBlock.setData(block['data']);
+                    this._blocks.push(newBlock);
+                } else {
+                    this._blocks.push(block);
+                }
+            });
+        }
         this.update();
     }
 
+    private _contentItem: IContentEntity;
     private readonly _blocks: AbstractBaseContentBlock[] = [];
     private readonly _blocksSubject: Subject<Array<AbstractBaseContentBlock>> = new BehaviorSubject<Array<AbstractBaseContentBlock>>(
         []

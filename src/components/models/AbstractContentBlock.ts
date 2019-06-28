@@ -5,5 +5,9 @@ import {ITypedEntity} from "./interfaces/ITypedEntity";
 export abstract class AbstractContentBlock<T extends AbstractContentBlockData> extends AbstractBaseContentBlock implements ITypedEntity<T> {
     public typeTitle: string;
     public abstract data: T;
+
+    public setData(data: T): void {
+        this.data = data;
+    }
 }
 

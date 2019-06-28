@@ -7,4 +7,5 @@ export abstract class AbstractBaseContentBlock extends AbstractEntity {
     public inFocus = false;
     public abstract icon: Icon;
     public abstract isEmpty(): boolean;
+    public abstract setData(data): void;
 }

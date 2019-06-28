@@ -72,7 +72,8 @@ export class BlocksFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.blocksManager = this._blocksManagerFactory.create(this.model);
+        this.blocksManager = this._blocksManagerFactory.create();
+        this.blocksManager.setEntity(this.model);
 
         this._blocks = this.model.blocks.slice();
         this.blocksManager.blocks.subscribe(blocks => {
