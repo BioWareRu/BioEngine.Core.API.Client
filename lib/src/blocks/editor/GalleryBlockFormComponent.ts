@@ -50,7 +50,7 @@ export class GalleryBlockFormComponent extends AbstractContentBlockFormComponent
         super(snackBarService);
     }
 
-    public readonly items = new Dictionary<number, StorageItem>();
+    public readonly items = new Dictionary<string, StorageItem>();
 
     protected _getFields(): Array<BlockFieldDescriptor> {
         return [new BlockFieldDescriptor('pictures', [Validators.required], 'data.pictures')];

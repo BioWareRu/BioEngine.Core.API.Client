@@ -1,5 +1,4 @@
-import {CKEditor5} from '@ckeditor/ckeditor5-angular';
-import * as BalloonEditor from '@ckeditor/ckeditor5-build-balloon';
+import BalloonEditor from '@ckeditor/ckeditor5-build-balloon';
 import {AbstractContentBlockFormComponent} from "./AbstractContentBlockFormComponent";
 import {AbstractBaseContentBlock} from "../../components/models/AbstractBaseContentBlock";
 
@@ -7,7 +6,7 @@ export abstract class AbstractEditorBlockFormComponent<TBlock extends AbstractBa
     public editorInstance = BalloonEditor;
 
     // noinspection JSMethodCanBeStatic
-    public get editorConfig(): CKEditor5.Config {
+    public get editorConfig(): {} {
         return {
             removePlugins: [
                 'UploadAdapter',

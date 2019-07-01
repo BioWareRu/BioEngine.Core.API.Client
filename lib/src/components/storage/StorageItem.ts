@@ -2,7 +2,7 @@ import {StorageItemPictureInfo} from './StorageItemPictureInfo';
 import {StorageItemType} from './StorageItemType';
 
 export class StorageItem {
-    public id: number;
+    public id: string;
     public fileName: string;
     public fileSize = 0;
     public publicUri: string;

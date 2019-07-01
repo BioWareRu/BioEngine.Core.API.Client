@@ -5,7 +5,7 @@ import {CreateFolderDialogComponent} from "./CreateFolderDialogComponent";
 import {BioCommonModule} from "../BioCommonModule";
 import {BioDialogsModule} from "../modals/BioDialogsModule";
 import {MatSortModule, MatTableModule} from "@angular/material";
-import {BioFormsModule} from "../forms/FormsModule";
+import {BioFormsModule} from "../forms/BioFormsModule";
 
 @NgModule({
     imports: [

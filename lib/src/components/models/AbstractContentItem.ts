@@ -17,6 +17,6 @@ export abstract class AbstractContentItem extends AbstractEntity implements ICon
     public siteIds: string[];
     public sites: any[];
     public publicUrls: PublicUrl[];
-    public authorId: number;
+    public authorId: string;
     public author: User;
 }

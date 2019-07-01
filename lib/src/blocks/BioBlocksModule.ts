@@ -1,6 +1,6 @@
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {NgModule} from '@angular/core';
-import {BioFormsModule} from '../components/forms/FormsModule';
+import {BioFormsModule} from '../components/forms/BioFormsModule';
 import {BlockFormComponent} from './editor/BlockFormComponent';
 import {BlocksFormComponent} from './editor/BlocksFormComponent';
 import {CutBlockFormComponent} from './editor/CutBlockFormComponent';
@@ -11,6 +11,7 @@ import {TwitterBlockFormComponent} from './editor/TwitterBlockFormComponent';
 import {QuoteBlockFormComponent} from './editor/QuoteBlockFormComponent';
 import {PictureBlockFormComponent} from './editor/PictureBlockFormComponent';
 import {YoutubeBlockFormComponent} from "./editor/YoutubeBlockFormComponent";
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 
 const COMPONENTS = [TextBlockFormComponent,
     GalleryBlockFormComponent,
@@ -24,7 +25,7 @@ const COMPONENTS = [TextBlockFormComponent,
     YoutubeBlockFormComponent];
 
 @NgModule({
-    imports: [BioFormsModule, DragDropModule],
+    imports: [BioFormsModule, DragDropModule, CKEditorModule],
     exports: [BioFormsModule, BlockFormComponent, BlocksFormComponent],
     declarations: [
         BlocksFormComponent,

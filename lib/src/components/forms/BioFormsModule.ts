@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import {InputFileConfig, InputFileModule} from 'ngx-input-file';
 import {ErrorsListComponent} from './ErrorsListComponent';
 import {AutocompleteInputComponent} from './fields/AutocompleteInputComponent';
@@ -45,8 +44,7 @@ const config: InputFileConfig = {};
         CheckboxInputComponent,
         ChipsInputComponent,
         AutocompleteInputComponent,
-        DatePickerInputComponent,
-        CKEditorModule,
+        DatePickerInputComponent
     ],
     providers: [],
     imports: [
@@ -59,7 +57,6 @@ const config: InputFileConfig = {};
         MatCheckboxModule,
         MatAutocompleteModule,
         ReactiveFormsModule,
-        CKEditorModule,
         InputFileModule.forRoot(config)
     ]
 })
