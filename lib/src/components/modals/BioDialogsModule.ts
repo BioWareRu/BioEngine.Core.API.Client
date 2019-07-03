@@ -1,7 +1,7 @@
 import {NgModule} from "@angular/core";
 import {ConfirmationDialogComponent} from "./ConfirmationDialogService";
 import {BioCommonModule} from "../BioCommonModule";
-import {MatDialogModule} from "@angular/material";
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
     imports: [

@@ -1,7 +1,8 @@
 import {NgModule} from "@angular/core";
 import {NotificationComponent} from "./NotificationComponent";
 import {BioCommonModule} from "../BioCommonModule";
-import {MatCardModule, MatSnackBarModule} from "@angular/material";
+import {MatCardModule} from "@angular/material/card";
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
     imports: [

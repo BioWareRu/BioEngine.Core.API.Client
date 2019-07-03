@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {MatIconModule} from "@angular/material";
+import {MatIconModule} from "@angular/material/icon";
 import {IconComponent} from "./IconComponent";
 import {CommonModule} from "@angular/common";
 

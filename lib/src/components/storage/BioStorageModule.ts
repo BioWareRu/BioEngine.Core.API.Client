@@ -4,8 +4,9 @@ import {StorageManagerComponent} from "./StorageManagerComponent";
 import {CreateFolderDialogComponent} from "./CreateFolderDialogComponent";
 import {BioCommonModule} from "../BioCommonModule";
 import {BioDialogsModule} from "../modals/BioDialogsModule";
-import {MatSortModule, MatTableModule} from "@angular/material";
 import {BioFormsModule} from "../forms/BioFormsModule";
+import {MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
     imports: [

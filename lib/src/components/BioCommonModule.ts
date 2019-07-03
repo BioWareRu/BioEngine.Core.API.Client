@@ -2,7 +2,7 @@ import {NgModule} from "@angular/core";
 import {DynamicHostDirective} from "./directives/DynamicHostDirective";
 import {CommonModule} from "@angular/common";
 import {MomentModule} from "ngx-moment";
-import {MatButtonModule, MatChipsModule, MatMenuModule} from "@angular/material";
+import {MatButtonModule} from "@angular/material/button";
 import {BioPipesModule} from "./pipes/BioPipesModule";
 import {BioIconsModule} from "./icon/BioIconsModule";
 import {FlexLayoutModule} from "@angular/flex-layout";
@@ -18,6 +18,8 @@ import {TagsService} from "../services/TagsService";
 import {SectionsCacheProvider} from "../cache/SectionsCacheProvider";
 import {SitesCacheProvider} from "../cache/SitesCacheProvider";
 import {TagsCacheProvider} from "../cache/TagsCacheProvider";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatChipsModule} from "@angular/material/chips";
 
 const MODULES = [
     CommonModule,
