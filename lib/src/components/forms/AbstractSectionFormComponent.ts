@@ -10,9 +10,6 @@ export abstract class AbstractSectionFormComponent<TModel extends AbstractSectio
         this.registerFormControl('title', [<any>Validators.required]);
         this.registerFormControl('url', [<any>Validators.required]);
         this.registerFormControl('blocks', [<any>Validators.required]);
-        this.registerFormControl('hashtag', [<any>Validators.required], 'data.hashtag');
-        this.registerFormControl('logo', [<any>Validators.required], 'data.logo');
-        this.registerFormControl('logoSmall', [<any>Validators.required], 'data.logoSmall');
         this.registerFormControl('siteIds', [<any>Validators.required]);
     }
 }
