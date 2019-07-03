@@ -1,7 +1,3 @@
-import {StorageItem} from "../storage/StorageItem";
+export abstract class AbstractSectionData {
 
-export class AbstractSectionData {
-    public logo: StorageItem;
-    public logoSmall: StorageItem;
-    public hashtag: StorageItem;
 }
