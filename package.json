@@ -4,6 +4,7 @@
   "scripts": {
     "generate-barrels": "barrelsby --delete -d lib/src -n public-api",
     "build": "npm run generate-barrels && ng build bioengine-angular",
+    "watch": "npm run generate-barrels && ng build --watch bioengine-angular",
     "release": "npm run build && npm publish dist"
   },
   "private": true,

@@ -20,6 +20,7 @@ import {SitesCacheProvider} from "../cache/SitesCacheProvider";
 import {TagsCacheProvider} from "../cache/TagsCacheProvider";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatChipsModule} from "@angular/material/chips";
+import {BioUsersModule} from "./user/BioUsersModule";
 
 const MODULES = [
     CommonModule,
@@ -32,7 +33,8 @@ const MODULES = [
     FlexLayoutModule,
     MomentModule,
     BioPipesModule,
-    BioIconsModule
+    BioIconsModule,
+    BioUsersModule
 ];
 
 @NgModule({

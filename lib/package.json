@@ -1,6 +1,6 @@
 {
     "name": "bioengine-angular",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "Core angular components for api client",
     "repository": {
         "type": "git",

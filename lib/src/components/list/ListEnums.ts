@@ -8,8 +8,7 @@ export enum ListTableColumnType {
     SectionsList,
     TagsList,
     ActionLink,
-    Author,
-    Site
+    Author
 }
 
 export enum ListTableColumnActionType {

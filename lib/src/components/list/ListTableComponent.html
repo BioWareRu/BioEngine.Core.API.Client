@@ -1,0 +1,90 @@
+<div style="position: relative;" class="mat-elevation-z8">
+    <div class="loading-shade" *ngIf="!dataLoaded">
+        <mat-spinner></mat-spinner>
+    </div>
+    <mat-table [dataSource]="this" matSort>
+        <ng-container *ngFor="let column of columns" matColumnDef="{{ column.key }}">
+            <mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="!column.sortable">
+                {{ column.title }}</mat-header-cell
+            >
+            <mat-cell
+                *matCellDef="let row"
+                [ngClass]="{ actions: column.type == columnTypes.Actions }"
+            >
+                <ng-container ngSwitch="{{ column.type }}">
+                    <ng-container *ngSwitchCase="columnTypes.Text"
+                        >{{ column.getValue(row) }}
+                    </ng-container>
+                    <ng-container *ngSwitchCase="columnTypes.Link">
+                        <a [routerLink]="column.getLink(row)" [class.disabled]="column.disabled">{{ column.getValue(row) }}</a>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="columnTypes.ActionLink">
+                        <a
+                            href="javascript:"
+                            (click)="column.click(row)"
+                            [class.disabled]="column.disabled"
+                            >{{ column.getValue(row) }}</a
+                        >
+                    </ng-container>
+                    <ng-container *ngSwitchCase="columnTypes.TimeAgo">
+                        <span
+                            title="{{
+                                column.getValue(row)
+                                    | amLocal
+                                    | amDateFormat: 'DD MMMM YYYY, HH:mm:ss'
+                            }}"
+                            >{{ column.getValue(row) | amTimeAgo }}</span
+                        >
+                    </ng-container>
+                    <ng-container *ngSwitchCase="columnTypes.SitesList">
+                        <sitesList [ids]="column.getValue(row)"></sitesList>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="columnTypes.SectionsList">
+                        <sectionsList [ids]="column.getValue(row)"></sectionsList>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="columnTypes.TagsList">
+                        <tagsList [ids]="column.getValue(row)"></tagsList>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="columnTypes.Author">
+                        <bio-user [user]="column.getValue(row)"></bio-user>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="columnTypes.Actions">
+                        <button mat-icon-button [matMenuTriggerFor]="menu">
+                            <icon iconName="fa-ellipsis-v"></icon>
+                        </button>
+                        <mat-menu #menu="matMenu">
+                            <ng-container *ngFor="let action of column.getActions(row)">
+                                <ng-container ngSwitch="{{ action.type }}">
+                                    <button
+                                        mat-menu-item
+                                        *ngSwitchCase="action.types.Click"
+                                        (click)="action.doClick(row)"
+                                    >
+                                        <icon [icon]="action.icon"></icon>
+                                        <span>{{ action.title }}</span>
+                                    </button>
+                                    <a
+                                        mat-menu-item
+                                        *ngSwitchCase="action.types.ExternalLink"
+                                        [href]="action.url"
+                                    >
+                                        <icon [icon]="action.icon"></icon>
+                                        <span>{{ action.title }}</span>
+                                    </a>
+                                </ng-container>
+                            </ng-container>
+                        </mat-menu>
+                    </ng-container>
+                    <ng-container *ngSwitchDefault>
+                        {{ column.getValue(row) }}
+                    </ng-container>
+                </ng-container>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columnsToDisplay"></mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
