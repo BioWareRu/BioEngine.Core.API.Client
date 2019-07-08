@@ -15,6 +15,15 @@ export class BlocksManager {
     public setEntity(contentItem: IContentEntity) {
         this._contentItem = contentItem;
         if (contentItem.blocks) {
+            contentItem.blocks.sort((a, b) => {
+                if (a.position < b.position) {
+                    return -1;
+                }
+                if (a.position > b.position) {
+                    return 1;
+                }
+                return 0;
+            });
             contentItem.blocks.forEach(block => {
                 // is block mapped?
                 if (!block.hasOwnProperty('isEmpty')) {
