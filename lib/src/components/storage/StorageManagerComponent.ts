@@ -112,7 +112,7 @@ export class StorageManagerComponent implements OnInit {
             .show<CreateFolderDialogComponent, string>(CreateFolderDialogComponent, '')
             .dialogRef.afterClosed()
             .subscribe((res: string) => {
-                if (res !== '' && res !== null) {
+                if (res) {
                     let alreadyExists = false;
                     this.items.forEach(item => {
                         if (item.isDirectory && item.name.toLowerCase() === res.toLowerCase()) {
