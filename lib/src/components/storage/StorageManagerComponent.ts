@@ -24,6 +24,7 @@ export class StorageManagerComponent implements OnInit {
     @Input()
     public selectMode = StorageManagerSelectMode.None;
     public selectModes = StorageManagerSelectMode;
+    public loading = true;
 
     public currentPath = '/';
     public breadcrumbs = [
@@ -32,7 +33,7 @@ export class StorageManagerComponent implements OnInit {
             name: '/'
         }
     ];
-    @ViewChild('fileInput', { static: true }) fileInput: ElementRef;
+    @ViewChild('fileInput', {static: true}) fileInput: ElementRef;
 
     public selection = new Dictionary<string, StorageNode>();
 
@@ -45,6 +46,7 @@ export class StorageManagerComponent implements OnInit {
     }
 
     public load(path: string): void {
+        this.loading = true;
         this._storageService.get(path).subscribe(items => {
             this.items = items;
             this.currentPath = path;
@@ -68,6 +70,7 @@ export class StorageManagerComponent implements OnInit {
                 });
             });
             this.breadcrumbs = breadcrumbs;
+            this.loading = false;
         });
     }
 
@@ -131,16 +134,19 @@ export class StorageManagerComponent implements OnInit {
 
     public fileChange($event): void {
         const fileList: FileList = $event.target.files;
-        const lenght = fileList.length;
-        const items: Array<StorageNode> = [];
-        for (let i = 0; i < lenght; i++) {
-            const file = fileList[i];
-            this._storageService.upload(file, this.currentPath).subscribe(item => {
-                items.push(item);
-                if (items.length === lenght) {
-                    this.load(this.currentPath);
-                }
-            });
+        const length = fileList.length;
+        if (length > 0) {
+            this.loading = true;
+            const items: Array<StorageNode> = [];
+            for (let i = 0; i < length; i++) {
+                const file = fileList[i];
+                this._storageService.upload(file, this.currentPath).subscribe(item => {
+                    items.push(item);
+                    if (items.length === length) {
+                        this.load(this.currentPath);
+                    }
+                });
+            }
         }
     }
 }

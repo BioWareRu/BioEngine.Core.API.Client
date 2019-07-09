@@ -6,7 +6,12 @@ import {AbstractDialogComponent} from '../modals/AbstractDialogComponent';
     selector: 'confirmation-dialog-component',
     template: `
         <h1 mat-dialog-title>Создать папку</h1>
-        <div mat-dialog-content><input type="text" required [(ngModel)]="folderName"/></div>
+        <div mat-dialog-content>
+            <mat-form-field [fxFlex]="100" [appearance]="'standard'">
+                <mat-label>Название папки</mat-label>
+                <input matInput [(ngModel)]="folderName" required type="text" placeholder="Название папки"/>
+            </mat-form-field>
+        </div>
         <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end">
             <button mat-raised-button color="warn" (click)="cancel()">Отмена</button>
             <button
@@ -24,14 +29,17 @@ import {AbstractDialogComponent} from '../modals/AbstractDialogComponent';
 })
 export class CreateFolderDialogComponent extends AbstractDialogComponent<string> {
     public folderName: string;
+
     public constructor(
         @Inject(MAT_DIALOG_DATA)
-        data: string) {
+            data: string) {
         super(data);
     }
+
     public confirm(): void {
         this.dialogRef.close(this.folderName);
     }
+
     public cancel(): void {
         this.dialogRef.close();
     }
