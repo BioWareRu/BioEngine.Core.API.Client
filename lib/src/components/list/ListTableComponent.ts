@@ -52,21 +52,16 @@ export class ListTableComponent<T extends AbstractEntity> implements DataSource<
 
     private _items: Subject<T[]> = new BehaviorSubject<T[]>([]);
     private _onStateChange = new EventEmitter<ListTableState>();
-    private _itemsPerPage = 20;
-    private _currentPage = 1;
     private _sort: string | null = '';
     private _filter: Filter | null = null;
 
     ngOnInit(): void {
         this.paginator.page.subscribe(e => {
-            this._itemsPerPage = e.pageSize;
-            this._currentPage = e.pageIndex;
             this._emitState();
         });
         this.sorter.sortChange.subscribe(e => {
             this.applySort(e.active, e.direction);
         });
-        this.paginator.pageSize = this._itemsPerPage;
         if (this._sort !== null) {
             const key = this._sort.replace('-', '');
             const sortDirection: SortDirection = this._sort.indexOf('-') > -1 ? 'desc' : 'asc';
@@ -77,7 +72,7 @@ export class ListTableComponent<T extends AbstractEntity> implements DataSource<
     }
 
     private _emitState(): void {
-        this._onStateChange.emit(new ListTableState(this._currentPage, this._itemsPerPage, this._sort, this._filter));
+        this._onStateChange.emit(new ListTableState(this.paginator.pageIndex, this.paginator.pageSize, this._sort, this._filter));
     }
 
     public applySort(column: string, direction: SortDirection): void {
