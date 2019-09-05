@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "generate-barrels": "barrelsby --delete -d lib/src -n public-api",
-    "build": "npm run generate-barrels && ng build bioengine-angular && scss-bundle -e ./lib/src/styles.scss -d ./dist/styles.scss",
+    "build": "npm run generate-barrels && ng build bioengine-angular && scss-bundle",
     "watch": "npm run generate-barrels && ng build --watch bioengine-angular",
     "release": "npm run build && npm publish dist"
   },
