@@ -37,21 +37,22 @@
         <ng-container matColumnDef="icon">
             <mat-header-cell *matHeaderCellDef></mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <ng-container *ngIf="element.isDirectory"
-                >
+                <ng-container *ngIf="element.isDirectory">
                     <icon iconName="fa-folder"></icon>
                 </ng-container>
                 <ng-container *ngIf="!element.isDirectory">
                     <ng-container [ngSwitch]="element.item.type">
                         <ng-container *ngSwitchCase="1">
-                            <img
+                            <a [href]="element.item.publicUri" target="_blank">
+                                <img
                                     style="width: 80%;
                             /* margin: 10px; */
                             background: #e5e0e0;
                             padding: 3px;"
                                     [src]="element.item.pictureInfo.smallThumbnail.publicUri"
                                     [alt]="element.item.fileName"
-                            />
+                                />
+                            </a>
                         </ng-container>
                         <ng-container *ngSwitchCase="2">
                             <icon iconName="fa-file"></icon>
@@ -63,8 +64,13 @@
         <ng-container matColumnDef="title">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Название</mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <span class="pointer" (click)="enter(element)">{{ element.name }}</span></mat-cell
-            >
+                <ng-container *ngIf="element.isDirectory">
+                    <span class="pointer" (click)="enter(element)">{{ element.name }}</span>
+                </ng-container>
+                <ng-container *ngIf="!element.isDirectory">
+                    <a [href]="element.item.publicUri" target="_blank">{{ element.name }}</a>
+                </ng-container>
+            </mat-cell>
         </ng-container>
         <ng-container matColumnDef="size">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Размер</mat-header-cell>
@@ -93,6 +99,7 @@
 
         <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
         <mat-row *matRowDef="let node; columns: columnsToDisplay"
-                 [ngClass]="{ selectable: selectMode!==selectModes.None, selected: node.selected}"  (click)="select(node)"></mat-row>
+                 [ngClass]="{ selectable: selectMode!==selectModes.None, selected: node.selected}"
+                 (click)="select(node)"></mat-row>
     </mat-table>
 </div>
