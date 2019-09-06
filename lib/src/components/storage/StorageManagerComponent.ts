@@ -46,6 +46,7 @@ export class StorageManagerComponent implements OnInit {
     }
 
     public load(path: string): void {
+        path = path.replace('//', '/');
         this.loading = true;
         this._storageService.get(path).subscribe(items => {
             this.items = items;
@@ -103,7 +104,7 @@ export class StorageManagerComponent implements OnInit {
 
     public enter(node: StorageNode): void {
         if (node.isDirectory) {
-            this.load(node.path);
+            this.load(this.currentPath + '/' + node.path);
         }
     }
 
