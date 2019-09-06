@@ -8,7 +8,8 @@ import {StorageNode} from "../components/storage/StorageNode";
     providedIn: 'root'
 })
 export class StorageService {
-    public constructor(protected _httpClient: RestClient) { }
+    public constructor(protected _httpClient: RestClient) {
+    }
 
     public get(path: string): Observable<Array<StorageNode>> {
         return this._httpClient
@@ -20,8 +21,16 @@ export class StorageService {
 
     public upload(file: File, prefix: string): Observable<StorageNode> {
         return this._httpClient
-            .post('Storage/upload/', file, { name: file.name, path: prefix })
+            .post('Storage/upload/', file, {name: file.name, path: prefix})
             .pipe(map(data => <StorageNode>data));
+    }
+
+    public delete(path: string): Observable<boolean> {
+        return this._httpClient
+            .delete('Storage', {
+                path
+            })
+            .pipe(map(res => <boolean>res));
     }
 }
 

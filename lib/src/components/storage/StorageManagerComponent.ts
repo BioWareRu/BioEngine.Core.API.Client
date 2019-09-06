@@ -5,6 +5,8 @@ import {CreateFolderDialogComponent} from './CreateFolderDialogComponent';
 import {StorageManagerSelectMode} from './StorageManagerSelectMode';
 import {StorageNode} from "./StorageNode";
 import {StorageService} from "../../services/StorageService";
+import {SnackBarService} from "../snacks/SnackBarService";
+import {SnackBarMessage} from "../snacks/SnackBarMessage";
 
 @Component({
     selector: 'storage-manager',
@@ -14,12 +16,13 @@ import {StorageService} from "../../services/StorageService";
 export class StorageManagerComponent implements OnInit {
     public constructor(
         private readonly _storageService: StorageService,
-        private readonly _dialogService: DialogService
+        private readonly _dialogService: DialogService,
+        private readonly _notificationsService: SnackBarService
     ) {
     }
 
     public items: StorageNode[] = [];
-    public columnsToDisplay = ['select', 'icon', 'title', 'size', 'date'];
+    public columnsToDisplay = ['select', 'icon', 'title', 'size', 'date', 'actions'];
 
     @Input()
     public selectMode = StorageManagerSelectMode.None;
@@ -46,7 +49,6 @@ export class StorageManagerComponent implements OnInit {
     }
 
     public load(path: string): void {
-        path = path.replace('//', '/');
         this.loading = true;
         this._storageService.get(path).subscribe(items => {
             this.items = items;
@@ -104,7 +106,28 @@ export class StorageManagerComponent implements OnInit {
 
     public enter(node: StorageNode): void {
         if (node.isDirectory) {
-            this.load(this.currentPath + '/' + node.path);
+            this.load(this.getFullPath(node));
+        }
+    }
+
+    private getFullPath(node: StorageNode) {
+        return (this.currentPath + '/' + node.path).replace('//', '/');
+    }
+
+    public delete(node: StorageNode): void {
+        if (!node.isDirectory) {
+            this._dialogService.confirm('Удаление файла', "Удалить файл " + node.name + '?').onConfirm.subscribe(() => {
+                this.loading = true;
+                this._storageService.delete(node.path).subscribe(isDeleted => {
+                    if (isDeleted) {
+                        this.load(this.currentPath);
+                    } else {
+                        this.loading = false;
+                        this._notificationsService.error(new SnackBarMessage("Ошибка", "Произошла ошибка при удалении файла. Попробуйте ещё раз."))
+                    }
+                });
+            });
+
         }
     }
 
