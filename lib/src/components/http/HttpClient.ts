@@ -37,8 +37,8 @@ export class RestClient {
         return this._httpClient.put(this._getUrl(resource), data);
     }
 
-    public delete(resource): Observable<any> {
-        return this._httpClient.delete(this._getUrl(resource));
+    public delete(resource, params = {}): Observable<any> {
+        return this._httpClient.delete(this._getUrl(resource, params));
     }
 
     private _getUrl(resource: string, params?: object): string {
