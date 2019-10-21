@@ -1,15 +1,15 @@
-import {CollectionViewer} from '@angular/cdk/collections';
-import {DataSource} from '@angular/cdk/table';
-import {Component, EventEmitter, Input, OnInit, ViewChild} from '@angular/core';
-import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort, SortDirection} from '@angular/material/sort';
-import {ListTableColumnType} from "./ListEnums";
-import {AbstractBaseService} from "../http/AbstractBaseService";
-import {Filter} from "../http/Filter";
-import {AbstractEntity} from "../models/AbstractEntity";
-import {ListTableColumn} from "./ListTableColumn";
-import {ListTableState} from "./ListTableState";
+import { CollectionViewer } from '@angular/cdk/collections';
+import { DataSource } from '@angular/cdk/table';
+import { Component, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, SortDirection } from '@angular/material/sort';
+import { ListTableColumnType } from "./ListEnums";
+import { AbstractBaseService } from "../http/AbstractBaseService";
+import { Filter } from "../http/Filter";
+import { AbstractEntity } from "../models/AbstractEntity";
+import { ListTableColumn } from "./ListTableColumn";
+import { ListTableState } from "./ListTableState";
 
 @Component({
     selector: 'ngx-list-table',
@@ -42,8 +42,8 @@ import {ListTableState} from "./ListTableState";
 })
 export class ListTableComponent<T extends AbstractEntity> implements DataSource<T>, OnInit {
     @Input() public service: AbstractBaseService<T> | null = null;
-    @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-    @ViewChild(MatSort, {static: true}) sorter: MatSort;
+    @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+    @ViewChild(MatSort, { static: true }) sorter: MatSort;
 
     public columns: Array<ListTableColumn<T>> = [];
     public dataLoaded = false;
@@ -54,6 +54,7 @@ export class ListTableComponent<T extends AbstractEntity> implements DataSource<
     private _onStateChange = new EventEmitter<ListTableState>();
     private _sort: string | null = '';
     private _filter: Filter | null = null;
+    private _rowClassGetter: (model: T) => string;
 
     ngOnInit(): void {
         this.paginator.page.subscribe(e => {
@@ -111,9 +112,9 @@ export class ListTableComponent<T extends AbstractEntity> implements DataSource<
     }
 
     public load(page: number,
-                filter: Filter | null = null,
-                itemsPerPage: number = 10,
-                sort: string | null = '-dateAdded'): void {
+        filter: Filter | null = null,
+        itemsPerPage: number = 10,
+        sort: string | null = '-dateAdded'): void {
         this.dataLoaded = false;
         this.paginator.pageSize = itemsPerPage;
         this.paginator.pageIndex = page;
@@ -124,6 +125,18 @@ export class ListTableComponent<T extends AbstractEntity> implements DataSource<
                 this.paginator.length = res.totalItems;
                 this.dataLoaded = true;
             });
+    }
+
+    public setRowClassGetter(getter: (model: T) => string): void {
+        this._rowClassGetter = getter;
+    }
+
+    public getRowClass(model: T): string {
+        if (this._rowClassGetter) {
+            return this._rowClassGetter(model);
+        }
+
+        return '';
     }
 
     connect(_: CollectionViewer): Observable<T[] | ReadonlyArray<T>> {
