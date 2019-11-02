@@ -19,7 +19,7 @@ import {StorageNode} from "../../components/storage/StorageNode";
                 <div class="picturesList">
                     <ng-container *ngFor="let picture of items.values()">
                         <div class="pic">
-                            <img [src]="picture.publicUri" alt="{{ picture.fileName }}"/>
+                            <img [src]="picture.pictureInfo.smallThumbnail.publicUri" alt="{{ picture.fileName }}"/>
                             <div (click)="deletePicture(picture)" class="deleteOverlay">
                                 <icon iconName="fa-trash"></icon>
                             </div>

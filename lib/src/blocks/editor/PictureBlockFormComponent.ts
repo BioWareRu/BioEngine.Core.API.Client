@@ -17,7 +17,7 @@ import {StorageItem} from "../../components/storage/StorageItem";
         <div [formGroup]="form.formGroup">
             <div *ngIf="item">
                 <div class="singlePicture">
-                    <img [src]="model.data.picture.publicUri" alt="{{model.data.picture.fileName}}}"/>
+                    <img [src]="model.data.picture.pictureInfo.mediumThumbnail.publicUri" alt="{{model.data.picture.fileName}}}"/>
                     <div class="addOverlay">
                         <icon (click)="showStorageDialog()" iconName="fa-plus"></icon>
                         <icon
