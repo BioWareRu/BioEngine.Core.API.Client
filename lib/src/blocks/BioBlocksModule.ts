@@ -12,6 +12,7 @@ import {QuoteBlockFormComponent} from './editor/QuoteBlockFormComponent';
 import {PictureBlockFormComponent} from './editor/PictureBlockFormComponent';
 import {YoutubeBlockFormComponent} from "./editor/YoutubeBlockFormComponent";
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+import {MatInputModule} from "@angular/material/input";
 
 const COMPONENTS = [TextBlockFormComponent,
     GalleryBlockFormComponent,
@@ -25,7 +26,7 @@ const COMPONENTS = [TextBlockFormComponent,
     YoutubeBlockFormComponent];
 
 @NgModule({
-    imports: [BioFormsModule, DragDropModule, CKEditorModule],
+    imports: [BioFormsModule, DragDropModule, CKEditorModule, MatInputModule],
     exports: [BioFormsModule, BlockFormComponent, BlocksFormComponent],
     declarations: [
         BlocksFormComponent,
