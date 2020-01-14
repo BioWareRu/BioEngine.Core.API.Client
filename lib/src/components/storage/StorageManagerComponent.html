@@ -44,13 +44,13 @@
                     <ng-container [ngSwitch]="element.item.type">
                         <ng-container *ngSwitchCase="1">
                             <a [href]="element.item.publicUri" target="_blank">
-                                <img
-                                    style="width: 80%;
+                                <img *ngIf="element.item.pictureInfo!=null"
+                                     style="width: 80%;
                             /* margin: 10px; */
                             background: #e5e0e0;
                             padding: 3px;"
-                                    [src]="element.item.pictureInfo.smallThumbnail.publicUri"
-                                    [alt]="element.item.fileName"
+                                     [src]="element.item.pictureInfo.smallThumbnail.publicUri"
+                                     [alt]="element.item.fileName"
                                 />
                             </a>
                         </ng-container>
