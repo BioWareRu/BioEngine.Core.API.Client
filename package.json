@@ -31,7 +31,7 @@
         "@angular/language-service": "8.2.14",
         "@angular/material": "8.2.3",
         "@angular/material-moment-adapter": "8.2.3",
-        "@ckeditor/ckeditor5-angular": "1.1.2",
+        "@ckeditor/ckeditor5-angular": "1.2.3",
         "@ckeditor/ckeditor5-build-balloon": "16.0.0",
         "@types/node": "13.1.6",
         "barrelsby": "2.2.0",
