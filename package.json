@@ -35,7 +35,7 @@
         "@ckeditor/ckeditor5-build-balloon": "19.0.2",
         "@types/node": "13.1.6",
         "barrelsby": "2.2.0",
-        "codelyzer": "5.2.1",
+        "codelyzer": "5.2.2",
         "moment": "2.26.0",
         "ng-packagr": "5.7.1",
         "ngx-custom-validators": "8.0.0",
