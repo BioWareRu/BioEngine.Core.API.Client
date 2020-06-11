@@ -45,7 +45,7 @@
         "protractor": "5.4.2",
         "scss-bundle": "^3.0.2",
         "ts-node": "8.10.2",
-        "tsickle": "^0.37.0",
+        "tsickle": "^0.38.1",
         "tslint": "5.20.1",
         "typescript": "3.5.3",
         "url-parse": "1.4.7",
