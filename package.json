@@ -49,6 +49,6 @@
         "tslint": "5.20.1",
         "typescript": "3.5.3",
         "url-parse": "1.4.7",
-        "uuid": "3.3.3"
+        "uuid": "7.0.3"
     }
 }
