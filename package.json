@@ -33,7 +33,7 @@
         "@angular/material-moment-adapter": "8.2.3",
         "@ckeditor/ckeditor5-angular": "1.2.3",
         "@ckeditor/ckeditor5-build-balloon": "20.0.0",
-        "@types/node": "13.13.14",
+        "@types/node": "13.13.15",
         "barrelsby": "2.2.0",
         "codelyzer": "5.2.2",
         "moment": "2.27.0",
