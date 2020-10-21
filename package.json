@@ -41,7 +41,7 @@
         "ngx-custom-validators": "8.0.0",
         "ngx-input-file": "8.0.1",
         "ngx-moment": "3.5.0",
-        "object-path": "0.11.4",
+        "object-path": "0.11.5",
         "protractor": "5.4.4",
         "scss-bundle": "^3.1.2",
         "ts-node": "8.10.2",
