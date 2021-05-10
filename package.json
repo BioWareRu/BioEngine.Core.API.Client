@@ -48,7 +48,7 @@
         "tsickle": "^0.39.1",
         "tslint": "5.20.1",
         "typescript": "3.5.3",
-        "url-parse": "1.4.7",
+        "url-parse": "1.5.1",
         "uuid": "3.3.3"
     }
 }
