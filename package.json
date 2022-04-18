@@ -36,7 +36,7 @@
         "@types/node": "13.13.27",
         "barrelsby": "2.2.0",
         "codelyzer": "5.2.2",
-        "moment": "2.29.1",
+        "moment": "2.29.3",
         "ng-packagr": "5.7.1",
         "ngx-custom-validators": "8.0.0",
         "ngx-input-file": "8.0.1",
